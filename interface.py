@@ -1,1 +1,2 @@
-print("IT WORKDED")
+import pyspark
+print(pyspark.__version__)

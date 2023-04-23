@@ -38,7 +38,7 @@ while True:
     # response = requests.get(f'https://financialmodelingprep.com/api/v3/quote/{symbol}?apikey={API_KEY}')
     # data = response.json()[0]
     rem = [""]
-    data = input("Enter value")
+    data = eval(input("Enter value"))
     producer.send(symbol, value=data)
     producer.flush()
     print('Data sent to Kafka at', time.time())

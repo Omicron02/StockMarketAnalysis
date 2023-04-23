@@ -1,35 +1,37 @@
-from pyspark.sql.functions import window, from_json, col
-from pyspark.sql.types import StructType, StructField, StringType
-from pyspark import SparkSession
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import from_json, col
+from pyspark.sql.types import StructType, StructField, StringType, FloatType
 
+# Create a SparkSession
 spark = SparkSession.builder \
-    .appName("KafkaToMySQL") \
+    .appName("KafkaStreamingExample") \
     .getOrCreate()
 
-schema = StructType([StructField("name", StringType()), StructField("price", StringType()), StructField("volume", StringType())])
+# Define the schema for the data
+schema = StructType([
+    StructField("name", StringType()),
+    StructField("price", FloatType())
+])
 
-df = spark \
-  .readStream \
-  .format("kafka") \
-  .option("kafka.bootstrap.servers", "localhost:9092") \
-  .option("subscribe", "AAPL") \
-  .option("startingOffsets", "earliest") \
-  .load() \
-  .select(from_json(col("value").cast("string"), schema).alias("json")) \
-  .select("json.*")
+# Read data from Kafka
+kafka_df = spark \
+    .readStream \
+    .format("kafka") \
+    .option("kafka.bootstrap.servers", "localhost:9092") \
+    .option("subscribe", "test") \
+    .option("startingOffsets", "earliest") \
+    .load()
 
-# Read data with a sliding window of 5 minutes
-windowed_df = df \
-  .groupBy(
-    window(df.timestamp, "10 seconds"), df.name
-  ) \
-  .count()
+# Process the data
+processed_df = kafka_df \
+    .selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)") \
+    .select(from_json(col("value"), schema).alias("parsed_value"))
 
-# Write the windowed data to the console
-query = windowed_df \
-  .writeStream \
-  .outputMode("complete") \
-  .format("console") \
-  .start()
+# Print the output to the console
+query = processed_df \
+    .writeStream \
+    .format("console") \
+    .start()
 
+# Wait for the stream to finish
 query.awaitTermination()
