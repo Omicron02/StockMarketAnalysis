@@ -5,41 +5,31 @@ import time
 import sys
 from dotenv import load_dotenv
 import os
+import datetime
+import random
 
 load_dotenv()
 API_KEY = os.getenv("API_KEY")
 
 symbol = sys.argv[1] 
 
-producer = KafkaProducer(bootstrap_servers=['localhost:9092'], value_serializer=lambda x: json.dumps(x).encode('utf-8'))
+producer = KafkaProducer(bootstrap_servers=['localhost:9092'], 
+                        value_serializer=lambda x: json.dumps(x).encode('utf-8'))
 
-value = {'symbol': 'AAPL', 
-         'name': 'Apple Inc.', 
-         'price': 165.02, 
-         'changesPercentage': -0.9781, 
-         'change': -1.63, 
-         'dayLow': 164.5, 
-         'dayHigh': 166.45, 
-         'yearHigh': 176.15, 
-         'yearLow': 124.17, 
-         'marketCap': 2610929901036, 
-         'priceAvg50': 156.3072, 
-         'priceAvg200': 150.27905, 
-         'exchange': 'NASDAQ', 
-         'volume': 56768497, 
-         'avgVolume': 63724377, 
-         'open': 165.05, 
-         'previousClose': 166.65, 
-         'eps': 5.88, 'pe': 28.06, 
-         'earningsAnnouncement': '2023-04-26T10:59:00.000+0000', 
-         'sharesOutstanding': 15821899776, 
-         'timestamp': 1682107204}
+symbol_dict = {"AAPL": "Apple Inc.", 
+                "NVDA": "NVIDIA Corporation", 
+                "MSFT": "Microsoft Corporation",
+                "GOOG": "Alphabet Inc.",
+                "META": "Meta Platforms, Inc."}
+
 while True:
     # response = requests.get(f'https://financialmodelingprep.com/api/v3/quote/{symbol}?apikey={API_KEY}')
     # data = response.json()[0]
     rem = [""]
-    data = eval(input("Enter value"))
-    producer.send(symbol, value=data)
-    producer.flush()
-    print('Data sent to Kafka at', time.time())
-    time.sleep(1)
+    for i in symbol_dict:
+        data = {"symbol": i, "name": symbol_dict[i], "price": random.uniform(100, 110), "volume": random.randint(100000, 20000000)}
+        data["tstamp"] = datetime.datetime.now().isoformat()
+        producer.send(symbol, value=data)
+        producer.flush()
+        print('Data sent to Kafka at', data["tstamp"])
+    time.sleep(10)
