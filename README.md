@@ -74,6 +74,10 @@ Open a new terminal and run `python3 producer.py insert_data`.
 
 Open a new terminal and run `streamlit run lit.py`.
 
+The rate of data flow can be changed in the last line of producer.py.
+
+The Window size can be changed by changing the value in line 33 and line 77 of sparkstream.py , make sure withWatermark in line 32 is a few times higher than the window size.
+
 The entire setup will take about 6 GB of RAM.
 
 # Outputs
