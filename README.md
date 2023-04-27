@@ -9,7 +9,7 @@ It takes data of 5 different companies: Apple, Google, Microsoft, NVIDIA, Meta f
 This data is then displayed on a streamlit UI in the form of matplotlib graphs. 
 
 It supports batch processing and stream processing.
-* <b> Batch</b>: Takes all the data stored in the database and displays min, max and avg.
+* <b> Batch</b>: Takes all the data stored in the database and plots it, also displays min, max and avg.
 * <b>Stream</b>: Takes the latest data from the database and plots it onto a graph.
 
 It uses Kafka Streming, Spark Streaming, Zookeeper, MySQL and Streamlit.
@@ -109,7 +109,7 @@ Aggregated Volume Graph
 
 ## Batch Processing
 
-![image](https://user-images.githubusercontent.com/52106611/234972397-52f3d93d-b2ca-4593-82f6-7da3a8452b3c.png)
+![image](https://user-images.githubusercontent.com/52106611/234976998-95b46de1-1e06-477d-859f-b19e8b5d935d.png)
 
 
 
