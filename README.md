@@ -35,6 +35,18 @@ Note: Highly recommended to run on Linux, other operating systems have a lot of 
 
 ## Running
 
+Head over to https://site.financialmodelingprep.com/developer/docs, create an account and go to the dashboard to get your API key. You will need 5 API keys, so repeat the process with 4 more gmail accounts. 
+In the repository folder, create a file called `.env` and put
+```
+API_KEY_1 = "<your_first_api_key>"
+API_KEY_2 = "<your_second_api_key>"
+API_KEY_3 = "<your_third_api_key>"
+API_KEY_4 = "<your_fourth_api_key>"
+API_KEY_5 = "<your_fifth_api_key>"
+```
+
+Never upload any of these keys onto github.
+
 Assuming zookeeper and kafka are properly configured and added to path in .bashrc, run `zookeeper-server-start.sh <path_to_zookeeper_installation>/kafka_2.12-3.4.0/config/zookeeper.properties`, replace <path_to_zookeeper_installation> with the path of the zookeeper installation. In the above command, regarding kafka_2.12-3.4.0, 2.12 is the Scala version and 3.4.0 is the kafka version.
 
 Then in a new terminal run `kafka-server-start.sh <path_to_kafka_installation>/kafka_2.12-3.4.0/config/server.properties`. 
@@ -62,7 +74,7 @@ Open a new terminal and run `python3 producer.py insert_data`.
 
 Open a new terminal and run `streamlit run lit.py`.
 
-Enjoy!
+The entire setup will take about 6 GB of RAM.
 
 # Credits
 
