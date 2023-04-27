@@ -29,7 +29,7 @@ It uses Kafka Streming, Spark Streaming, Zookeeper, MySQL and Streamlit.
 * Spark (3.4.0) <img src="https://user-images.githubusercontent.com/52106611/234957673-ac579aac-0cf0-4c16-ab28-db61680030c3.png" width="40">
 * Zookeeper (3.8.0)  <img src="https://user-images.githubusercontent.com/52106611/234960200-8c408ba7-ee7f-4830-a768-e2e0721d875f.png" width="20">
 * Kafka (3.4.0)  <img src="https://user-images.githubusercontent.com/52106611/234960486-00ad1519-de43-499b-9e92-dc6222562e21.png" width="20">
-* Python modules to pip install: streamlit, matplotlib, mysql-connector-python, dotenv, kafka-python, pyspark.
+* Python modules to pip install: streamlit, matplotlib, mysql-connector-python, dotenv, kafka-python, pyspark, pandas.
 
 Note: Highly recommended to run on Linux, other operating systems have a lot of problems.
 
@@ -75,6 +75,40 @@ Open a new terminal and run `python3 producer.py insert_data`.
 Open a new terminal and run `streamlit run lit.py`.
 
 The entire setup will take about 6 GB of RAM.
+
+# Outputs
+## Database
+Simple_data table 
+
+![image](https://user-images.githubusercontent.com/52106611/234969159-270b71aa-d490-42d5-bb13-33e10583fd35.png)
+
+Agg_data table
+![image](https://user-images.githubusercontent.com/52106611/234969071-9745672f-6543-4b07-b666-66b14e24d7a4.png)
+
+## Stream Processing
+
+Simple Price Graph 
+
+![image](https://user-images.githubusercontent.com/52106611/234969928-61655bea-94e9-4def-8721-4605490ef3f0.png)
+
+Aggregated Price Graph
+
+![image](https://user-images.githubusercontent.com/52106611/234969826-8597c73c-37d2-4a62-a3d0-09e5816f0da9.png)
+
+Simple Volume Graph 
+
+![image](https://user-images.githubusercontent.com/52106611/234970432-1b29c3bf-2099-4eab-82a3-fcce73390cc9.png)
+
+Aggregated Volume Graph
+
+![image](https://user-images.githubusercontent.com/52106611/234970212-3c610546-1e4c-4a71-9aa9-03082b6312e4.png)
+
+## Batch Processing
+
+![image](https://user-images.githubusercontent.com/52106611/234972397-52f3d93d-b2ca-4593-82f6-7da3a8452b3c.png)
+
+
+
 
 # Credits
 
