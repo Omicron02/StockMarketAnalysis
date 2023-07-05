@@ -21,7 +21,7 @@ It uses Kafka Streming, Spark Streaming, Zookeeper, MySQL and Streamlit.
 # Working and Execution
 
 ## Requirements
-### The brackets show the versions used in this project.
+
 * Java (17.0.6) <img src="https://user-images.githubusercontent.com/52106611/234960006-16fd4640-04cb-49f3-a688-e7788619fde6.png" width="35">
 * Scala (2.12)  <img src="https://user-images.githubusercontent.com/52106611/234959491-ad2232c1-3a52-41b7-acec-96d25eb2182e.png" width="20">
 * Python (3.11.2) <img src="https://user-images.githubusercontent.com/52106611/234959157-011efd84-0b1b-47fa-a51f-bfc5bed8114e.png" width="25">
